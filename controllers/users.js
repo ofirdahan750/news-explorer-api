@@ -31,17 +31,15 @@ module.exports.createUser = (req, res, next) => {
   const { name, email, password } = req.body;
   bcrypt
     .hash(password, 10)
-    .then((hash) =>
-      User.create({
-        name,
-        email,
-        password: hash,
-      }),
-    )
+    .then((hash) => User.create({
+      name,
+      email,
+      password: hash,
+    }))
     .then((finalData) => {
-      const dataCopyNoPass = finalData.toObject();
-      delete dataCopyNoPass.password
-      res.send({ dataCopyNoPass });
+      const dataCopyNoPassword = finalData.toObject();
+      delete dataCopyNoPassword.password;
+      res.send({ user: dataCopyNoPassword });
     })
     .catch((err) => {
       next(err);
@@ -59,8 +57,9 @@ module.exports.login = (req, res, next) => {
       );
       res.send({ token });
     })
-    .catch((err) => {
-      console.log('err:', err);
-      next(err);
+    .catch((error) => {
+      // eslint-disable-next-line no-console
+      console.log('err:', error);
+      next(error);
     });
 };

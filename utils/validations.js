@@ -3,13 +3,13 @@ const { Segments } = require('celebrate');
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 
-const isUrlVaild = (value, helpers) =>
-  validator.isURL(value) ? value : helpers.error('string.uri');
+const isUrlVaild = (value, helpers) => (validator.isURL(value) ? value : helpers.error('string.uri'));
 
 const getUserAuthSchema = {
   body: Joi.object().keys({
     email: Joi.string().required().email(),
-    password: Joi.string().required().min(2).max(200).required(),
+    password: Joi.string().required().min(2).max(200)
+      .required(),
     name: Joi.string().min(2).max(30),
   }),
 };

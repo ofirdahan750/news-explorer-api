@@ -9,7 +9,7 @@
     "lint": "npx eslint .",
     "lintfix": "npm run lint -- --fix",
     "cleandev": "rm -rf node_modules && npm i && npm run dev ",
-    "gitpush": "git add . ; git commit -m 'add scheme modal + handle error' ; git push"
+    "gitpush": "npm run lintfix ; git add . ; git commit -m 'Fix the key name after the signup' ; git push"
   },
   "repository": {
     "type": "git",
