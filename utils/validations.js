@@ -26,9 +26,9 @@ const getCreateArticleSchema = {
 
     source: Joi.string().required(),
 
-    link: Joi.string().required().custom(isUrlVaild),
+    link: Joi.string().required(),
 
-    image: Joi.string().required().custom(isUrlVaild),
+    image: Joi.string().required(),
   }),
 };
 
