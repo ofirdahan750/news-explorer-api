@@ -1,9 +1,10 @@
-const validator = require('validator');
+// const validator = require('validator');
 const { Segments } = require('celebrate');
 const Joi = require('joi');
-Joi.objectId = require('joi-objectid')(Joi);
+// Joi.objectId = require('joi-objectid')(Joi);
 
-const isUrlVaild = (value, helpers) => (validator.isURL(value) ? value : helpers.error('string.uri'));
+// const isUrlVaild = (value, helpers) =>
+// (validator.isURL(value) ? value : helpers.error('string.uri'));
 
 const getUserAuthSchema = {
   body: Joi.object().keys({
