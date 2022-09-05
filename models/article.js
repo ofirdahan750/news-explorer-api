@@ -25,26 +25,26 @@ const articleSchema = new mongoose.Schema({
   link: {
     type: String,
     required: true,
-    // validate: {
-    //   validator(v) {
-    //     /^https?:\/\/[w{3}.]?[A-Z0-9\-._~:?%#[\]/@!$&'()*+,;=]+[/#]?/gim.test(
-    //       v,
-    //     );
-    //   },
-    //   message: (props) => `${props.value} is not a valid URL`,
-    // },
+    validate: {
+      validator(v) {
+        /^https?:\/\/[w{3}.]?[A-Z0-9\-._~:?%#[\]/@!$&'()*+,;=]+[/#]?/gim.test(
+          v,
+        );
+      },
+      message: (props) => `${props.value} is not a valid URL`,
+    },
   },
   image: {
     type: String,
     required: true,
-    // validate: {
-    //   validator(v) {
-    //     /^https?:\/\/[w{3}.]?[A-Z0-9\-._~:?%#[\]/@!$&'()*+,;=]+[/#]?/gim.test(
-    //       v,
-    //     );
-    //   },
-    //   message: (props) => `${props.value} is not a valid URL`,
-    // },
+    validate: {
+      validator(v) {
+        /^https?:\/\/[w{3}.]?[A-Z0-9\-._~:?%#[\]/@!$&'()*+,;=]+[/#]?/gim.test(
+          v,
+        );
+      },
+      message: (props) => `${props.value} is not a valid URL`,
+    },
   },
 });
 
