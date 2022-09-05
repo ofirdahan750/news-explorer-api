@@ -7,7 +7,7 @@ const isUrlVaild = (value, helpers) => (validator.isURL(value) ? value : helpers
 
 const getUserAuthSchema = {
   body: Joi.object().keys({
-    email: Joi.string().required().email(),
+    email: Joi.string().required(),
     password: Joi.string().required().min(2).max(200)
       .required(),
     name: Joi.string().min(2).max(30),
@@ -24,7 +24,7 @@ const getCreateArticleSchema = {
 
     date: Joi.string().required(),
 
-    source: Joi.string().required().custom(isUrlVaild),
+    source: Joi.string().required(),
 
     link: Joi.string().required().custom(isUrlVaild),
 
