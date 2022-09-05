@@ -19,7 +19,7 @@ const getCreateArticleSchema = {
   body: Joi.object().keys({
     keyword: Joi.string().max(42).min(2).required(),
 
-    title: Joi.string().max(30).min(2).required(),
+    title: Joi.string().required(),
 
     text: Joi.string().required(),
 
