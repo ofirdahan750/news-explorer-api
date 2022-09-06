@@ -46,6 +46,10 @@ const articleSchema = new mongoose.Schema({
       message: (props) => `${props.value} is not a valid URL`,
     },
   },
+  owner: {
+    type: mongoose.Types.ObjectId,
+    select: false,
+  },
 });
 
 articleSchema.statics.authAndDelete = function authAndDelete({
