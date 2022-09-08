@@ -10,9 +10,7 @@ module.exports.getArticles = (req, res, next) => {
       );
       res.send(userArticles);
     })
-    .catch((err) => {
-      next(err);
-    });
+    .catch((err) => new ErrorHandler(404, `No card found, Error: ${err}`));
 };
 
 module.exports.deleteArticle = (req, res, next) => {
@@ -20,20 +18,25 @@ module.exports.deleteArticle = (req, res, next) => {
     .select('owner')
     .then((foundArticle) => {
       if (!foundArticle) {
-        next(new ErrorHandler(404, 'No card found'));
+        next(
+          new ErrorHandler(
+            404,
+            `No card found with ID ${req.params.articleId}`,
+          ),
+        );
         return;
       }
       if (req.user._id !== String(foundArticle.owner)) {
-        next(new ErrorHandler(404, 'No card found'));
+        next(new ErrorHandler(401, 'unauthorized'));
         return;
       }
       Article.findByIdAndRemove(req.params.articleId)
         .then(() => {
           Article.find({}).then((userArticles) => res.send(userArticles));
         })
-        .catch(next);
+        .catch((err) => next(new ErrorHandler(404, `No card found, Error: ${err}`)));
     })
-    .catch(next);
+    .catch((err) => next(new ErrorHandler(401, `No card found with ID ${req.params.articleId} Error : ${err}`)));
 };
 module.exports.createArticle = (req, res, next) => {
   Article.create({ ...req.body, owner: req.user._id })
