@@ -13,6 +13,6 @@ const {
 
 router.get('/', getArticles);
 router.post('/', celebrate(getCreateArticleSchema), createArticle);
-router.delete('/:cardId', celebrate(getDeleteArticleSchema), deleteArticle);
+router.delete('/:articleId', celebrate(getDeleteArticleSchema), deleteArticle);
 
 module.exports = router;

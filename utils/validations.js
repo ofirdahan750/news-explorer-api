@@ -1,6 +1,5 @@
-// const validator = require('validator');
-const { Segments } = require('celebrate');
 const Joi = require('joi');
+const { Segments } = require('celebrate');
 Joi.objectId = require('joi-objectid')(Joi);
 
 // const isUrlVaild = (value, helpers) =>
@@ -35,10 +34,7 @@ const getCreateArticleSchema = {
 
 const getDeleteArticleSchema = {
   [Segments.PARAMS]: Joi.object().keys({
-    userId: Joi.objectId().required(),
-  }),
-  body: Joi.object().keys({
-    owner: Joi.objectId().required(),
+    articleId: Joi.string().required().hex(),
   }),
 };
 

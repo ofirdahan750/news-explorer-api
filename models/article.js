@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-const { ErrorHandler } = require('../utils/error');
 
 const articleSchema = new mongoose.Schema({
   keyword: {
@@ -51,18 +50,5 @@ const articleSchema = new mongoose.Schema({
     select: false,
   },
 });
-
-articleSchema.statics.authAndDelete = function authAndDelete({
-  articleId,
-  reqUserId,
-  ownerId,
-}) {
-  if (reqUserId === ownerId) {
-    return this.deleteOne({ _id: articleId }).orFail(() => {
-      throw new ErrorHandler(404, `No card found with ${articleId}`);
-    });
-  }
-  return Promise.reject(new ErrorHandler(403, 'Access denied'));
-};
 
 module.exports = mongoose.model('article', articleSchema);
